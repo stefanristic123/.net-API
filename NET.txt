@@ -1,0 +1,46 @@
+.NET 
+ 
+- web api
+
+dotnet --info
+dotnet -h
+
+Kreireanje projekta
+
+dotnet new sln
+dotnet new webapi -o API
+- dodavanje sln-a u projekat 
+dotnet sln add API
+
+Za dodavanje asseta 
+cmd + shift + p 
+assets
+
+Za https
+dotnet dev-certs https --trust
+
+
+lunchsetting.json - fajl za podesavanja koji nam govori kako ce se projekat pokretati
+appsettings -  fajl za podesavanja koji nam govori kako ce se projekat pokretati dok vec ranuje
+
+Za instalaciju Nugeta ici u ekstenzije i skinuti nuGet Gallery3
+
+Entity Framework Core - ORM - object realtion mapper
+prebacuje nas kod u SQL komande koje updajtuje nase tabele u bazi
+
+SQL Lite
+- takodje moramo instalirati i Microsoft.EntityFrameworkCore.SQLite
+- takodje moramo instalirati i EntityFrameworkCore
+
+nema database servera, sql koristi fajl kako bi storovao nasu bazu i nije za produkciju 
+ovo dodajemo u appsettings.Dev -   "ConnectionStrings": {"DefaultConnection": "Data source=datingapp.db"}
+- za kreiranje DB instaliramo EF -  dotnet tool install --global dotnet-ef --version 7.0.0
+- komanda za provjeravnaje verzije - dotnet ef --version
+- takodje moramo instalirati i Microsoft.EntityFrameworkCore.Design
+
+- komanda za migraciju - dotnet ef migrations add InitialCreate -o Data/Migrations
+- komanda za update baze - dotnet ef database update
+
+API
+
+za vracanje liste koristimo IEnumerable ili List ali lista nam daje vise slozeniji stvari i funkcija
