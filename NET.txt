@@ -41,6 +41,10 @@ ovo dodajemo u appsettings.Dev -   "ConnectionStrings": {"DefaultConnection": "D
 - komanda za migraciju - dotnet ef migrations add InitialCreate -o Data/Migrations
 - komanda za update baze - dotnet ef database update
 
-API
-
+- API
 za vracanje liste koristimo IEnumerable ili List ali lista nam daje vise slozeniji stvari i funkcija
+
+- CORS
+program.cs 
+builder.Services.AddCors();
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
