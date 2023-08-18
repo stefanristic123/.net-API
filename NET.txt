@@ -19,6 +19,7 @@ assets
 Za https
 dotnet dev-certs https --trust
 
+- Za generisanje .vscode - lunch.json => genrate assets for build and debug
 
 lunchsetting.json - fajl za podesavanja koji nam govori kako ce se projekat pokretati
 appsettings -  fajl za podesavanja koji nam govori kako ce se projekat pokretati dok vec ranuje
@@ -48,3 +49,22 @@ za vracanje liste koristimo IEnumerable ili List ali lista nam daje vise slozeni
 program.cs 
 builder.Services.AddCors();
 app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+- JSON Web Token 
+Header - algoritam and token type
+Payload - data
+Signature 
+
+
+- Interface 
+kao neki ugovor izmedju klase i samog sebe, bilo koja klasa da koristi interface koristi njegove propertije metode itd.
+kada pravimo JWT moramo dodati 2 nugat pakete
+- System.IdentityModel.Tokens.Jwt
+- Microsoft.AspNetCore.Authentication.JwtBearer
+
+u program.cs dodajemo
+app.UseAuthentication();
+
+takodje dodajemo dvije ekstenzije 
+ApplicationServiceExtension
+IdentityServiceExtension
