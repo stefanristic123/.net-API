@@ -68,3 +68,21 @@ app.UseAuthentication();
 takodje dodajemo dvije ekstenzije 
 ApplicationServiceExtension
 IdentityServiceExtension
+
+- Repository Pattern - nivo apstrakcije kako kontroler ne bi isao direktno u DbContext uvodimo Respository gdje pokrece funkcije
+zasto je bolje :
+1. Enkapsulacija logike
+2. Duplikacija koda  
+3. Promovise testiranje
+4. Omogucava nam da lakse promjenimo ORM
+zasto je gore:
+1. Abstrakcija abstrakcije
+2. Svaki entity mora imati svoj respository znaci vise koda
+3. Moramo implementirati UnitOfWork pattern
+
+pravimo: IUSerRepository => UserRepository => dodajemo IUserRepository u UsersController
+
+- AutoMapper - pomazen nam da mapiramo sa jednog objekta na drugi 
+dodajemo
+- AutoMapper.Extensions.Microsoft.DependencyInjection
+    

@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // builder.Services.AddDbContext<DataContext>(options => { // Lambda izraz - options je parametar koji proslijedjujem bloku
 //     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -40,4 +41,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+// using var scope = app.Services.CreateScope();
+// var services  = scope.ServiceProvider;
+// try{
+//     var context = services.GetRequiredService<DataContext>();
+//     await context.Database.MigrateAsync();
+//     await Seed.SeedUsers(context);
+// }
+// catch (Exception ex){
+//     var logger = services.GetService<ILogger<Program>>();
+//     logger.LogError(ex, "An error occured during migration");
+// }
+
+app.Run(); 
