@@ -16,7 +16,7 @@ namespace API.Controllers
     [Authorize]
     public class UsersController : BaseApiController
     {
-        public readonly IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         public UsersController(IUserRepository userRepository, IMapper mapper)
         {
@@ -26,7 +26,7 @@ namespace API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers(){
-            var users = await _userRepository.GetUsersAsync();
+            var users = await _userRepository.GetMembersAsync();
             return Ok(users);
         }
 
