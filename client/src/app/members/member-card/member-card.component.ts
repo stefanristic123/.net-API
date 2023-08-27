@@ -9,7 +9,5 @@ import { Member } from 'src/app/_models/member';
 export class MemberCardComponent {
   @Input() member: Member | undefined;
 
-  constructor(){
-    console.log(this.member)
-  }
+  constructor(){  }
 }
