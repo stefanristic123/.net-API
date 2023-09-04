@@ -39,4 +39,19 @@ export class MembersService {
       })
     )
   }
+
+  uploadPhoto(file: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<any>(this.baseUrl + 'users/add-photo', formData);
+  }
+
+  setMainPhoto(photoId: number) {
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+  }
+
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
 }
