@@ -1,23 +1,67 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
-    <h2 class="text-center text-primary">Sign up</h2>
-    <hr>
-    <div class="mb-3">
-        <input type="text" 
-            class="form-control" 
-            name="username" 
-            [(ngModel)]="model.username" 
-            placeholder="Username">
-    </div>
+<div class="container">
+    <div class="row">
+        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()">
+          <div>
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" formControlName="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+  
+          <div>
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" formControlName="username">
+          </div>
+  
+          <div>
+            <label for="knownAs">Known As</label>
+            <input type="text" class="form-control" id="knownAs" formControlName="knownAs">
+          </div>
+  
+          <div>
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" formControlName="city">
+          </div>
+  
+          <div>
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" formControlName="country">
+          </div>
+  
+          <div>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password"
+                [ngClass]="{ 'is-invalid': registerForm.get('password')?.hasError('minlength') || registerForm.get('password')?.hasError('maxlength') }">
+            <div class="invalid-feedback">
+                <div *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 4 characters.</div>
+                <div *ngIf="registerForm.get('password')?.hasError('maxlength')">Password cannot exceed 8 characters.</div>
+            </div>
+          </div>
+          
+          <div>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
+                [ngClass]="{ 'is-invalid': registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched) }">
+            <div class="invalid-feedback">
+                <div *ngIf="registerForm.get('confirmPassword')?.hasError('isMatching')">Passwords do not match.</div>
+            </div>
+          </div>
 
-    <div class="mb-3">
-        <input type="password" 
-            class="form-control" 
-            name="password" 
-            [(ngModel)]="model.password" 
-            placeholder="Password">
+            
+          <div class="row mt-5" *ngIf="validationErrors">
+            <ul class="text-danger">
+                <li *ngFor="let error of validationErrors">
+                    {{error}}
+                </li>
+            </ul>
+          </div> 
+
+          <div class="actions">
+            <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+            <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+          </div>
+
+        </form>
     </div>
-    <div class="form-group text-center">
-        <button class="btn btn-success me-2" type="submit">Register</button>
-        <button class="btn btn-default me-2" (click)="cancel()" type="button">Cancel</button>
-    </div>
-</form>
+  </div>

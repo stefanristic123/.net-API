@@ -16,8 +16,8 @@ import { environment } from 'src/enviorments/enviorment';
   styleUrls: ['./photo-editor.component.css']
 })
 export class PhotoEditorComponent implements OnInit {
-  @Input() member: Member | undefined;
-  user: User | undefined;
+  @Input() member!: Member;
+  user!: User;
   selectedFile: File | undefined;
 
   constructor(private accountService: AccountService, private memberService: MembersService) {
@@ -40,6 +40,11 @@ export class PhotoEditorComponent implements OnInit {
       this.memberService.uploadPhoto(this.selectedFile).subscribe(
         response => {
           this.member?.photos.push(response);
+          if (response.isMain) {
+            this.user.photoUrl = response.url;
+            this.member.photoUrl = response.url;
+            this.accountService.setCurrentUser(this.user);
+          }
         },
         error => {
           console.error('Error uploading photo:', error);
