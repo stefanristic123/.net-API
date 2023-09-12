@@ -21,10 +21,9 @@ namespace API.Entities
         public string? City { get; set; }    
         public string? Country { get; set; }
         public ICollection<Photo>? Photos { get; set; }
-        // public int GetAge(){
-        //     return DateOfBirth.CalculateAge();
-        // }
-
+        public List<UserLike> LikedByUsers { get; set; } // Ovo pokazuje ko je sve lajkovao trenutno ulogovanog korisnika
+        public List<UserLike> LikedUsers { get; set; } // Korisnici koje je ulogovani korisnik lajkovani
+    
     }
 }
 
