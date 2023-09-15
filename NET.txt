@@ -85,4 +85,13 @@ pravimo: IUSerRepository => UserRepository => dodajemo IUserRepository u UsersCo
 - AutoMapper - pomazen nam da mapiramo sa jednog objekta na drugi 
 dodajemo
 - AutoMapper.Extensions.Microsoft.DependencyInjection
-    
+
+Adding new segment 
+
+1. Adding Entity
+2. Data Context - dotnet ef migrations add ...
+3. I...Repository - definisemo metode
+4. Kreiramo DTO
+5. Kreiramo ...Repository
+6. Dodajemo u servise u progam.cs ili ApplicationServiceExtension
+7. Dodajmo kontroler

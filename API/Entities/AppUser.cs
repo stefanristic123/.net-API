@@ -23,6 +23,8 @@ namespace API.Entities
         public ICollection<Photo>? Photos { get; set; }
         public List<UserLike> LikedByUsers { get; set; } // Ovo pokazuje ko je sve lajkovao trenutno ulogovanog korisnika
         public List<UserLike> LikedUsers { get; set; } // Korisnici koje je ulogovani korisnik lajkovani
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessageRecived { get; set; }
     
     }
 }

@@ -13,3 +13,27 @@
     background-color: #fff;
     border-top: none;
 }
+
+.card {
+    border: none;
+}
+
+.chat {
+    list-style: none;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.chat li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.rounded-circle {
+    max-height: 50px;
+}
+
+/* hr {
+    color: #B3A9A9 solid 1px;
+} */

@@ -24,32 +24,81 @@
             <div class="card-footer">
                 <div class="btn-group d-flex">
                     <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-success">Message</button>
+                    <button class="btn btn-success" (click)="selectTab('Messages')">Message</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-8">
-        <tabset class="member-tabset">
+        <tabset class="member-tabset" #memberTabs>
             <tab heading="About {{member.knownAs}}">
-                <h4>Description</h4>
+                <h4 style="margin-top: 20px;">Description</h4>
                 <p>{{member.introduction}}</p>
                 <h4>Looking for</h4>
                 <p>{{member.lookingFor}}</p>
             </tab>
             <tab heading="Interests">
-                <h4>Interests</h4>
+                <h4  style="margin-top: 20px;">Interests</h4>
                 <!-- <p>{{member.interests}}</p> -->
             </tab>
             <tab heading="Photos" #photoTab="tab">
                 <div *ngFor="let photo of member.photos" >
-                    <img src="{{photo.url}}" alt="" class="card-img-top img-thumbnail">
+                    <img style="width: 25%;" src="{{photo.url}}" alt="" class="card-img-top img-thumbnail">
+                </div>
+            </tab>
+            <tab heading="Messages" (selectTab)="onTabActivated($event)" >
+                <!-- Messages -->
+
+                <div class="card">
+                    <div class="card-body">
+                        <div *ngIf="messages.length === 0">
+                            No messages yet... say hi by using the message box below
+                        </div>
+                
+                        <ul *ngIf="messages.length > 0" class="chat">
+                            <li *ngFor="let message of messages">
+                                <div>
+                                    <span class="chat-img float-end">
+                                        <img class="rounded-circle" 
+                                            src="{{message.senderPhotoUrl || './assets/user.png'}}" 
+                                            alt="image of user">
+                                    </span>
+                                    <div class="chat-body">
+                                        <div class="header">
+                                            <small class="text-muted">
+                                                <span class="fa fa-clock-o">{{message.messageSent  | date:'dd MMM yyyy' }}</span>
+                                                <span class="text-danger" *ngIf="!message.dateRead 
+                                                    && message.senderUsername !== member.username">(unread)</span>
+                                                <span class="text-success" *ngIf="message.dateRead 
+                                                    && message.senderUsername !== member.username">(read {{message.dateRead  | date:'dd MMM yyyy'  }})</span>
+                                            </small>
+                                        </div>
+                                        <p>{{message.content}}</p>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="card-footer">
+                        <form #messageForm="ngForm" (ngSubmit)="sendMessage(member.username)" autocomplete="off">
+                            <div class="input-group">
+                                <input
+                                    name="messageContent"
+                                    required
+                                    [(ngModel)]="messageContent" 
+                                    type="text" 
+                                    class="form-control input-sm" 
+                                    placeholder="Send a private message">
+                                <div class="input-group-append">
+                                    <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
-                <!-- <gallery *ngIf="photoTab.active" [items]="images" class="gallery"></gallery> -->
-            </tab>
-            <tab heading="Messages">
-                <p>Messages will go here</p>
             </tab>
         </tabset>
     </div>
