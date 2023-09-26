@@ -95,3 +95,10 @@ Adding new segment
 5. Kreiramo ...Repository
 6. Dodajemo u servise u progam.cs ili ApplicationServiceExtension
 7. Dodajmo kontroler
+
+Identity
+
+dodajemo klasu na AppUser 
+dodajemo AppRole i dodajmo AppUserRole zbog relatioshipa many to many
+dodajemo IdentityDbContext umjesto DbContext- a
+dodajemo Microsoft.AspNetCore.Identity.EntityFrameworkCore
