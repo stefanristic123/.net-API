@@ -94,7 +94,7 @@ Adding new segment
 4. Kreiramo DTO
 5. Kreiramo ...Repository
 6. Dodajemo u servise u progam.cs ili ApplicationServiceExtension
-7. Dodajmo kontroler
+7. Dodajmo kontroler 
 
 Identity
 
@@ -102,3 +102,16 @@ dodajemo klasu na AppUser
 dodajemo AppRole i dodajmo AppUserRole zbog relatioshipa many to many
 dodajemo IdentityDbContext umjesto DbContext- a
 dodajemo Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+Signal R - GIVES Real time web funcionality to apps
+    - Daahboard and monitoring apps
+    - Collaborative apps    
+    - Notifikacije
+    - Chat
+
+Podrzava
+    - WebSockets
+    - Server Sent events
+    - Long polling
+
+BehaviorSubject - varijanta subskrajba koja zahtjeva inicijalnu vrijednost i emituje trenutnu vrijednost kad god je subskrajbovano na nju

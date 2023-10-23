@@ -4,6 +4,9 @@
             <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
                 class="card-img-top img-thumbnail">
             <div class="card-body">
+                <div class="mb-2" *ngIf="(presenceService.onlineUsers$ | async)?.includes(member.username)">
+                    <i class="fa fa-user-circle text-success"></i> Online now
+                </div> 
                 <div>
                     <strong>Location:</strong>
                     <p>{{member.city}}, {{member.country}}</p>
@@ -31,32 +34,16 @@
     </div>
     <div class="col-8">
         <tabset class="member-tabset" #memberTabs>
-            <tab heading="About {{member.knownAs}}">
-                <h4 style="margin-top: 20px;">Description</h4>
-                <p>{{member.introduction}}</p>
-                <h4>Looking for</h4>
-                <p>{{member.lookingFor}}</p>
-            </tab>
-            <tab heading="Interests">
-                <h4  style="margin-top: 20px;">Interests</h4>
-                <!-- <p>{{member.interests}}</p> -->
-            </tab>
-            <tab heading="Photos" #photoTab="tab">
-                <div *ngFor="let photo of member.photos" >
-                    <img style="width: 25%;" src="{{photo.url}}" alt="" class="card-img-top img-thumbnail">
-                </div>
-            </tab>
             <tab heading="Messages" (selectTab)="onTabActivated($event)" >
                 <!-- Messages -->
-
                 <div class="card">
                     <div class="card-body">
-                        <div *ngIf="messages.length === 0">
-                            No messages yet... say hi by using the message box below
-                        </div>
-                
-                        <ul *ngIf="messages.length > 0" class="chat">
-                            <li *ngFor="let message of messages">
+                            <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
+                                No messages yet... say hi by using the message box below
+                            </div>
+                    
+                            <ul *ngIf="(messageService.messageThread$ | async)!.length > 0" class="chat">
+                                <li *ngFor="let message of (messageService.messageThread$ | async)">
                                 <div>
                                     <span class="chat-img float-end">
                                         <img class="rounded-circle" 
@@ -98,7 +85,22 @@
                         </form>
                     </div>
                 </div>
+            </tab>
 
+            <tab heading="About {{member.knownAs}}">
+                <h4 style="margin-top: 20px;">Description</h4>
+                <p>{{member.introduction}}</p>
+                <h4>Looking for</h4>
+                <p>{{member.lookingFor}}</p>
+            </tab>
+            <tab heading="Interests">
+                <h4  style="margin-top: 20px;">Interests</h4>
+                <!-- <p>{{member.interests}}</p> -->
+            </tab>
+            <tab heading="Photos" #photoTab="tab">
+                <div *ngFor="let photo of member.photos" >
+                    <img style="width: 25%;" src="{{photo.url}}" alt="" class="card-img-top img-thumbnail">
+                </div>
             </tab>
         </tabset>
     </div>
