@@ -115,3 +115,8 @@ Podrzava
     - Long polling
 
 BehaviorSubject - varijanta subskrajba koja zahtjeva inicijalnu vrijednost i emituje trenutnu vrijednost kad god je subskrajbovano na nju
+
+Unite of Work - is a design pattern that helps you manage a set of related database operations within a single transaction. 
+It ensures that all these operations are either committed together (if successful) or rolled back together (if any operation fails).
+It helps you group multiple database operations (e.g., insert, update, delete) into a single logical transaction, so if any part of the 
+transaction fails, none of the changes are persisted to the database.
