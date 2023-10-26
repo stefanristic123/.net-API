@@ -30,6 +30,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy  {
   messageForm: NgForm | undefined;
   messageContent = '';
   user?: User;
+  loading = false;
 
   constructor(
     private memberService: MembersService, 
@@ -102,10 +103,12 @@ export class MemberDetailComponent implements OnInit, OnDestroy  {
     //   }
     // })
 
+
+    this.loading = true;
     this.messageService.sendMessage(username, this.messageContent).then(() => {
       this.messageForm?.reset();
       this.messageContent = '';
-    })
+    }).finally(() => this.loading = true);
   }
 
 }
