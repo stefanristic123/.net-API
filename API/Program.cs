@@ -68,7 +68,7 @@ if (app.Environment.IsDevelopment()){
     app.UseSwaggerUI();
 }
 
-app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200"));
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://datingplatform-b068af051c04.herokuapp.com/"));
 app.UseAuthentication();
 app.UseAuthorization();
 
